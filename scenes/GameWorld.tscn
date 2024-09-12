@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=4 uid="uid://0kpyv3ucfff8"]
+[gd_scene load_steps=9 format=4 uid="uid://0kpyv3ucfff8"]
 
-[ext_resource type="PackedScene" uid="uid://yne17mrgp6nf" path="res://nodes/player/player.tscn" id="1_c38gx"]
-[ext_resource type="Texture2D" uid="uid://lgrmw52xywe0" path="res://assets/images/Terrain/Terrain (16x16).png" id="2_ajbk1"]
-[ext_resource type="Script" path="res://nodes/player/player.gd" id="2_phikc"]
+[ext_resource type="PackedScene" uid="uid://yne17mrgp6nf" path="res://nodes/player/player.tscn" id="1_3lbp6"]
+[ext_resource type="Texture2D" uid="uid://lgrmw52xywe0" path="res://assets/images/Terrain/Terrain (16x16).png" id="2_nk7vm"]
+[ext_resource type="PackedScene" uid="uid://cui0rmqfius3b" path="res://nodes/obstacle/raining_cloud.tscn" id="3_hrttk"]
+[ext_resource type="PackedScene" uid="uid://bgrnxcxbn7bvv" path="res://nodes/obstacle/sun.tscn" id="4_ysptn"]
+[ext_resource type="Script" path="res://nodes/ui/score_display.gd" id="5_oub0a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8x8jr"]
-texture = ExtResource("2_ajbk1")
+texture = ExtResource("2_nk7vm")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -194,10 +196,12 @@ texture = ExtResource("2_ajbk1")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_8x8jr")
 
-[node name="World" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_ic2o5"]
+font_size = 25
 
-[node name="Player" parent="." instance=ExtResource("1_c38gx")]
-script = ExtResource("2_phikc")
+[node name="GameWorld" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_3lbp6")]
 move_speed = 200
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -207,3 +211,23 @@ tile_set = SubResource("TileSet_okpeo")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(566, 468)
 zoom = Vector2(2, 2)
+
+[node name="RainingClouds" parent="." instance=ExtResource("3_hrttk")]
+position = Vector2(390, 391)
+
+[node name="Sun" parent="." instance=ExtResource("4_ysptn")]
+position = Vector2(785, 403)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreDisplay" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0
+"
+label_settings = SubResource("LabelSettings_ic2o5")
+horizontal_alignment = 1
+script = ExtResource("5_oub0a")

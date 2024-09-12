@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://yne17mrgp6nf"]
+[gd_scene load_steps=16 format=3 uid="uid://yne17mrgp6nf"]
 
 [ext_resource type="Texture2D" uid="uid://dqjq5ylxlegt5" path="res://assets/images/Main Characters/Ninja Frog/Idle (32x32).png" id="1_lvopy"]
+[ext_resource type="Script" path="res://nodes/player/player.gd" id="1_y7ruw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q80xf"]
 atlas = ExtResource("1_lvopy")
@@ -92,6 +93,7 @@ radius = 11.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(623, 519)
+script = ExtResource("1_y7ruw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bk6de")
