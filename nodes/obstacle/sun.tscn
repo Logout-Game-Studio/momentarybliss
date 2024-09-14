@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgrnxcxbn7bvv"]
+[gd_scene load_steps=7 format=3 uid="uid://bgrnxcxbn7bvv"]
 
+[ext_resource type="Script" path="res://nodes/obstacle/raining_cloud.gd" id="1_3k1fl"]
 [ext_resource type="Texture2D" uid="uid://dmocuy1t2q4ku" path="res://assets/images/Items/Boxes/Box1/Hit (28x24).png" id="1_c82s5"]
 [ext_resource type="Script" path="res://nodes/obstacle/damage_area.gd" id="2_4dfl3"]
 
@@ -10,10 +11,16 @@ region = Rect2(30.1417, 2.87454, 24.137, 18.2017)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqtsu"]
 size = Vector2(20, 232)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36vmi"]
+size = Vector2(24.2424, 20)
+
 [node name="Sun" type="Node2D"]
 texture_repeat = 2
 position = Vector2(635, 371)
 scale = Vector2(3.795, 1)
+script = ExtResource("1_3k1fl")
+max_bounces = 1
+move_speed = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.831373, 0, 1)
@@ -27,5 +34,12 @@ damage = -1
 position = Vector2(0, 113)
 shape = SubResource("RectangleShape2D_sqtsu")
 
+[node name="CornerDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_36vmi")
+
 [connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_body_exited"]
+[connection signal="body_entered" from="CornerDetectionArea" to="." method="_on_corner_detection_area_body_entered"]

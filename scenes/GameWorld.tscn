@@ -215,7 +215,6 @@ zoom = Vector2(2, 2)
 
 [node name="RainingClouds" parent="." instance=ExtResource("3_hrttk")]
 position = Vector2(390, 391)
-move_speed = 1
 
 [node name="Sun" parent="." instance=ExtResource("4_ysptn")]
 position = Vector2(785, 403)

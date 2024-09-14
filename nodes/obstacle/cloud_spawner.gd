@@ -1,7 +1,7 @@
 extends Node2D
 
 class CloudInfo:
-	var resource:Resource
+	var resource: Resource
 	var chance: float = 0.2
 	func _init(resource: Resource, chance: float):
 		self.resource = resource
@@ -16,5 +16,5 @@ var clouds_array: Array[CloudInfo] = [
 func _ready() -> void:
 	while (true):
 		await get_tree().create_timer(spawn_delay).timeout
-		var cloud = clouds_array[randi_range(0, clouds_array.size())]
+		var cloud = clouds_array[randi_range(0, clouds_array.size() - 1)]
 		owner.add_child(cloud.resource.instantiate())

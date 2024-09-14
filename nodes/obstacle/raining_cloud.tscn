@@ -19,6 +19,7 @@ texture_repeat = 2
 position = Vector2(635, 371)
 scale = Vector2(3.795, 1)
 script = ExtResource("1_iu81p")
+move_speed = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
@@ -35,7 +36,6 @@ shape = SubResource("RectangleShape2D_sqtsu")
 [node name="CornerDetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_s6f6o")
 
 [connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
