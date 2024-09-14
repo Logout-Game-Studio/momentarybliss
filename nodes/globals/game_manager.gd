@@ -26,6 +26,7 @@ func game_over():
     _load_scene(game_over_scene.duplicate())
 
 func load_main_game_scene():
+    player_score = 0
     _load_scene(main_game_scene.duplicate())
 
 func load_main_menu_scene():
