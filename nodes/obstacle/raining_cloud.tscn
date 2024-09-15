@@ -15,7 +15,7 @@ size = Vector2(72, 16)
 texture_repeat = 2
 position = Vector2(635, 371)
 script = ExtResource("1_iu81p")
-move_speed = 5.0
+max_bounces = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
@@ -27,18 +27,9 @@ texture = SubResource("AtlasTexture_exrq0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
 shape = SubResource("RectangleShape2D_s6f6o")
 
-[node name="Rain" type="Node2D" parent="." node_paths=PackedStringArray("spots")]
+[node name="Rain" type="Node2D" parent="."]
 position = Vector2(0, 9)
 script = ExtResource("3_wxe27")
-spots = [NodePath("Spot1"), NodePath("Spot2"), NodePath("Spot3")]
-
-[node name="Spot1" type="Node2D" parent="Rain"]
-
-[node name="Spot2" type="Node2D" parent="Rain"]
-position = Vector2(-36, 0)
-
-[node name="Spot3" type="Node2D" parent="Rain"]
-position = Vector2(36, 0)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="CornerDetectionArea" to="." method="_on_corner_detection_area_body_entered"]

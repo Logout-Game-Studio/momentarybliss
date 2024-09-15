@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://5ikrd8yk2fgb"]
+[gd_scene load_steps=6 format=3 uid="uid://5ikrd8yk2fgb"]
 
 [ext_resource type="Script" path="res://nodes/obstacle/raindrop.gd" id="1_2qxpq"]
 [ext_resource type="Texture2D" uid="uid://dbr5i4kqeu4oi" path="res://icon.svg" id="1_nospj"]
@@ -8,9 +8,9 @@ size = Vector2(14, 14)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dcaf3"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_30j3u"]
+
 [node name="Raindrop" type="RigidBody2D"]
-collision_layer = 2
-collision_mask = 3
 script = ExtResource("1_2qxpq")
 damage = 5
 
@@ -28,4 +28,10 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_dcaf3")
 
+[node name="GroundDetectorArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetectorArea"]
+shape = SubResource("CircleShape2D_30j3u")
+
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="body_entered" from="GroundDetectorArea" to="." method="_on_ground_detector_area_body_entered"]
