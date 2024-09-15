@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bgrnxcxbn7bvv"]
 
-[ext_resource type="Script" path="res://nodes/obstacle/raining_cloud.gd" id="1_3k1fl"]
+[ext_resource type="Script" path="res://nodes/obstacle/moving_obstacle.gd" id="1_3k1fl"]
 [ext_resource type="Texture2D" uid="uid://dmocuy1t2q4ku" path="res://assets/images/Items/Boxes/Box1/Hit (28x24).png" id="1_c82s5"]
 [ext_resource type="Script" path="res://nodes/obstacle/damage_area.gd" id="2_4dfl3"]
 
@@ -37,7 +37,6 @@ shape = SubResource("RectangleShape2D_sqtsu")
 [node name="CornerDetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_36vmi")
 
 [connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]

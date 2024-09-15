@@ -1,43 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://cui0rmqfius3b"]
+[gd_scene load_steps=6 format=3 uid="uid://cui0rmqfius3b"]
 
 [ext_resource type="Texture2D" uid="uid://dmocuy1t2q4ku" path="res://assets/images/Items/Boxes/Box1/Hit (28x24).png" id="1_c6ulc"]
-[ext_resource type="Script" path="res://nodes/obstacle/raining_cloud.gd" id="1_iu81p"]
-[ext_resource type="Script" path="res://nodes/obstacle/damage_area.gd" id="2_yw1lj"]
+[ext_resource type="Script" path="res://nodes/obstacle/moving_obstacle.gd" id="1_iu81p"]
+[ext_resource type="Script" path="res://nodes/obstacle/rain.gd" id="3_wxe27"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exrq0"]
 atlas = ExtResource("1_c6ulc")
 region = Rect2(30.1417, 2.87454, 24.137, 18.2017)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqtsu"]
-size = Vector2(20, 232)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6f6o"]
-size = Vector2(26.8774, 16)
+size = Vector2(72, 16)
 
 [node name="RainingClouds" type="Node2D"]
 texture_repeat = 2
 position = Vector2(635, 371)
-scale = Vector2(3.795, 1)
 script = ExtResource("1_iu81p")
 move_speed = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
+scale = Vector2(3, 1)
 texture = SubResource("AtlasTexture_exrq0")
-
-[node name="DamageArea" type="Area2D" parent="."]
-script = ExtResource("2_yw1lj")
-damage = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2(0, 113)
-shape = SubResource("RectangleShape2D_sqtsu")
 
 [node name="CornerDetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
 shape = SubResource("RectangleShape2D_s6f6o")
 
-[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
-[connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_body_exited"]
+[node name="Rain" type="Node2D" parent="." node_paths=PackedStringArray("spots")]
+position = Vector2(0, 9)
+script = ExtResource("3_wxe27")
+spots = [NodePath("Spot1"), NodePath("Spot2"), NodePath("Spot3")]
+
+[node name="Spot1" type="Node2D" parent="Rain"]
+
+[node name="Spot2" type="Node2D" parent="Rain"]
+position = Vector2(-36, 0)
+
+[node name="Spot3" type="Node2D" parent="Rain"]
+position = Vector2(36, 0)
+
 [connection signal="body_entered" from="CornerDetectionArea" to="." method="_on_corner_detection_area_body_entered"]
+[connection signal="tree_exiting" from="Rain" to="Rain" method="_on_tree_exiting"]

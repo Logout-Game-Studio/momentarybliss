@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://5ikrd8yk2fgb"]
+
+[ext_resource type="Script" path="res://nodes/obstacle/raindrop.gd" id="1_2qxpq"]
+[ext_resource type="Texture2D" uid="uid://dbr5i4kqeu4oi" path="res://icon.svg" id="1_nospj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ce1pr"]
+size = Vector2(14, 14)
+
+[node name="Raindrop" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_2qxpq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ce1pr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_nospj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

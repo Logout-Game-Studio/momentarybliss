@@ -1,4 +1,4 @@
-extends Node2D
+class_name MovingObstacle extends Node2D
 
 var direction: int = 1
 @export var max_bounces: int = 2
