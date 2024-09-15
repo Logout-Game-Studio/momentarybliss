@@ -40,5 +40,6 @@ position = Vector2(-36, 0)
 [node name="Spot3" type="Node2D" parent="Rain"]
 position = Vector2(36, 0)
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="CornerDetectionArea" to="." method="_on_corner_detection_area_body_entered"]
 [connection signal="tree_exiting" from="Rain" to="Rain" method="_on_tree_exiting"]

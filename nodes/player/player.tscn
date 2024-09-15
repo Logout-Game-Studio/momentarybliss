@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://yne17mrgp6nf"]
+[gd_scene load_steps=19 format=3 uid="uid://yne17mrgp6nf"]
 
 [ext_resource type="Texture2D" uid="uid://dqjq5ylxlegt5" path="res://assets/images/Main Characters/Ninja Frog/Idle (32x32).png" id="1_lvopy"]
 [ext_resource type="Script" path="res://nodes/player/player.gd" id="1_y7ruw"]
+[ext_resource type="PackedScene" uid="uid://ceqocsdmxovli" path="res://nodes/components/hit_box_area.tscn" id="3_0i00c"]
+[ext_resource type="PackedScene" uid="uid://cn1m8g3vxvyh1" path="res://nodes/components/health_component.tscn" id="4_xlfgi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q80xf"]
 atlas = ExtResource("1_lvopy")
@@ -91,6 +93,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6pva"]
 radius = 11.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_viehw"]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(623, 519)
 script = ExtResource("1_y7ruw")
@@ -103,3 +107,13 @@ frame_progress = 0.177417
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_q6pva")
+
+[node name="HitBoxArea" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_0i00c")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxArea"]
+shape = SubResource("CircleShape2D_viehw")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_xlfgi")]
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
