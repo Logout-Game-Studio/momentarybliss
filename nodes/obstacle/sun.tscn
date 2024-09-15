@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgrnxcxbn7bvv"]
+[gd_scene load_steps=6 format=3 uid="uid://bgrnxcxbn7bvv"]
 
-[ext_resource type="Script" path="res://nodes/obstacle/moving_obstacle.gd" id="1_3k1fl"]
 [ext_resource type="Texture2D" uid="uid://dmocuy1t2q4ku" path="res://assets/images/Items/Boxes/Box1/Hit (28x24).png" id="1_c82s5"]
-[ext_resource type="Script" path="res://nodes/obstacle/damage_area.gd" id="2_4dfl3"]
+[ext_resource type="Script" path="res://nodes/obstacle/sun.gd" id="1_m8oyg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exrq0"]
 atlas = ExtResource("1_c82s5")
@@ -16,22 +15,20 @@ size = Vector2(24.2424, 20)
 
 [node name="Sun" type="Node2D"]
 texture_repeat = 2
-position = Vector2(635, 371)
-scale = Vector2(3.795, 1)
-script = ExtResource("1_3k1fl")
-max_bounces = 1
-move_speed = 3.0
+script = ExtResource("1_m8oyg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.831373, 0, 1)
+scale = Vector2(3, 1)
 texture = SubResource("AtlasTexture_exrq0")
 
-[node name="DamageArea" type="Area2D" parent="."]
-script = ExtResource("2_4dfl3")
-damage = -1
+[node name="HealArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2(0, 113)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealArea"]
+position = Vector2(0, 126)
+scale = Vector2(3.44, 1)
 shape = SubResource("RectangleShape2D_sqtsu")
 
 [node name="CornerDetectionArea" type="Area2D" parent="."]
@@ -39,6 +36,6 @@ shape = SubResource("RectangleShape2D_sqtsu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
 shape = SubResource("RectangleShape2D_36vmi")
 
-[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
-[connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_body_exited"]
+[connection signal="area_entered" from="HealArea" to="." method="_on_heal_area_area_entered"]
+[connection signal="area_exited" from="HealArea" to="." method="_on_heal_area_area_exited"]
 [connection signal="body_entered" from="CornerDetectionArea" to="." method="_on_corner_detection_area_body_entered"]

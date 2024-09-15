@@ -26,7 +26,8 @@ project/assembly_name="MomentaryBliss"
 [file_customization]
 
 folder_colors={
-"res://nodes/components/": "green"
+"res://nodes/components/": "green",
+"res://nodes/obstacle/": "red"
 }
 
 [input]
@@ -44,6 +45,7 @@ move_right={
 
 [layer_names]
 
+2d_physics/layer_1="World"
 2d_physics/layer_2="HitBox"
 
 [rendering]

@@ -17,6 +17,8 @@ func damage(value: int):
 
 func heal(value:int):
 	current_health += value
+	print("heal taken:" + str(value))
+	print("current health:" + str(current_health))
 	if current_health >= max_health:
 		current_health = max_health
 	healed.emit(value)

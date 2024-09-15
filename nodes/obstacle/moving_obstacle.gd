@@ -3,7 +3,7 @@ class_name MovingObstacle extends Node2D
 var direction: int = 1
 @export var max_bounces: int = 2
 var current_bounces: int = 0
-@export var move_speed: float = 10
+@export var move_speed: float = 5
 
 func _ready() -> void:
 	var possible_directions = [1, -1]

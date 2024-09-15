@@ -218,6 +218,7 @@ position = Vector2(390, 391)
 
 [node name="Sun" parent="." instance=ExtResource("4_ysptn")]
 position = Vector2(785, 403)
+move_speed = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
