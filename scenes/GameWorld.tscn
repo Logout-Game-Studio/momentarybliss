@@ -229,3 +229,4 @@ script = ExtResource("5_oub0a")
 visible = false
 position = Vector2(566, 289)
 script = ExtResource("6_pu6to")
+spawn_delay = 1
