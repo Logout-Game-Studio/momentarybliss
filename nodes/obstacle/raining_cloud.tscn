@@ -23,6 +23,7 @@ scale = Vector2(3, 1)
 texture = SubResource("AtlasTexture_exrq0")
 
 [node name="CornerDetectionArea" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
 shape = SubResource("RectangleShape2D_s6f6o")
@@ -30,6 +31,7 @@ shape = SubResource("RectangleShape2D_s6f6o")
 [node name="Rain" type="Node2D" parent="."]
 position = Vector2(0, 9)
 script = ExtResource("3_wxe27")
+shotting_delay = 0.5
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="CornerDetectionArea" to="." method="_on_corner_detection_area_body_entered"]

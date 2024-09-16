@@ -1,10 +1,16 @@
 extends Node2D
-var rain_drop: RainDrop = preload("res://nodes/obstacle/raindrop.tscn").instantiate()
+
+@export var shotting_delay:float = 1
+var shotting:bool = true
+var rain_drop = preload("res://nodes/obstacle/raindrop.tscn")
 
 func _ready() -> void:
-	get_tree().root.add_child.call_deferred(rain_drop)
-	rain_drop.attacked.connect(_reset_rain_drop)
+	_shoot_loop(rain_drop)
 	
-func _reset_rain_drop():
-	if rain_drop:
-		rain_drop.global_position = global_position
+func _shoot_loop(bullet_ref:PackedScene) -> void:
+	while shotting:
+		await get_tree().create_timer(shotting_delay).timeout
+		var bullet_instance = rain_drop.instantiate()
+		get_tree().root.add_child.call_deferred(bullet_instance)
+		bullet_instance.position = global_position
+		

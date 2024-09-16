@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://0kpyv3ucfff8"]
+[gd_scene load_steps=8 format=4 uid="uid://0kpyv3ucfff8"]
 
 [ext_resource type="PackedScene" uid="uid://yne17mrgp6nf" path="res://nodes/player/player.tscn" id="1_3lbp6"]
 [ext_resource type="Texture2D" uid="uid://lgrmw52xywe0" path="res://assets/images/Terrain/Terrain (16x16).png" id="2_nk7vm"]
-[ext_resource type="PackedScene" uid="uid://cui0rmqfius3b" path="res://nodes/obstacle/raining_cloud.tscn" id="3_hrttk"]
-[ext_resource type="PackedScene" uid="uid://bgrnxcxbn7bvv" path="res://nodes/obstacle/sun.tscn" id="4_ysptn"]
 [ext_resource type="Script" path="res://nodes/ui/score_display.gd" id="5_oub0a"]
 [ext_resource type="Script" path="res://nodes/obstacle/cloud_spawner.gd" id="6_pu6to"]
 
@@ -213,13 +211,6 @@ tile_set = SubResource("TileSet_okpeo")
 position = Vector2(566, 485)
 zoom = Vector2(2, 2)
 
-[node name="RainingClouds" parent="." instance=ExtResource("3_hrttk")]
-position = Vector2(390, 391)
-
-[node name="Sun" parent="." instance=ExtResource("4_ysptn")]
-position = Vector2(785, 403)
-move_speed = 0.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScoreDisplay" type="Label" parent="CanvasLayer"]
@@ -235,5 +226,6 @@ horizontal_alignment = 1
 script = ExtResource("5_oub0a")
 
 [node name="CloudSpawner" type="Node2D" parent="."]
+visible = false
 position = Vector2(566, 289)
 script = ExtResource("6_pu6to")

@@ -27,6 +27,7 @@ project/assembly_name="MomentaryBliss"
 
 folder_colors={
 "res://nodes/components/": "green",
+"res://nodes/globals/": "blue",
 "res://nodes/obstacle/": "red"
 }
 
@@ -47,6 +48,7 @@ move_right={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="HitBox"
+2d_physics/layer_3="Clouds"
 
 [rendering]
 
