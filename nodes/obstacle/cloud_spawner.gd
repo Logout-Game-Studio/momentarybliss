@@ -6,4 +6,6 @@ var raining_cloud = preload("res://nodes/obstacle/raining_cloud.tscn")
 func _ready() -> void:
 	while (true):
 		await get_tree().create_timer(spawn_delay).timeout
-		owner.add_child(raining_cloud.instantiate())
+		var cloud_instance = raining_cloud.instantiate()
+		owner.add_child(cloud_instance)
+		cloud_instance.position = global_position
