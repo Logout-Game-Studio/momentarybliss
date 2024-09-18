@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://0kpyv3ucfff8"]
+[gd_scene load_steps=15 format=4 uid="uid://0kpyv3ucfff8"]
 
 [ext_resource type="PackedScene" uid="uid://yne17mrgp6nf" path="res://nodes/player/player.tscn" id="1_3lbp6"]
 [ext_resource type="Texture2D" uid="uid://ddabwau86svld" path="res://assets/images/Terrain/sky.png" id="1_woqjo"]
@@ -8,52 +8,13 @@
 [ext_resource type="Script" path="res://nodes/obstacle/cloud_spawner.gd" id="6_pu6to"]
 [ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="6_yyknn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uwg88"]
-atlas = ExtResource("6_yyknn")
-region = Rect2(54.9393, 79.6143, 49.7351, 80.3857)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6bvpi"]
 atlas = ExtResource("6_yyknn")
 region = Rect2(-0.503983, 5.44941, 47.5838, 42.9187)
 
-[sub_resource type="Animation" id="Animation_25che"]
-resource_name = "float"
-length = 2.00005
-loop_mode = 1
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(521, 502), Vector2(521, 500), Vector2(521, 502), Vector2(521, 504), Vector2(521, 502)]
-}
-
-[sub_resource type="Animation" id="Animation_8cdn8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(521, 502)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6yo1"]
-_data = {
-"RESET": SubResource("Animation_8cdn8"),
-"float": SubResource("Animation_25che")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwg88"]
+atlas = ExtResource("6_yyknn")
+region = Rect2(54.9393, 79.6143, 49.7351, 80.3857)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m71rh"]
 atlas = ExtResource("6_yyknn")
@@ -286,8 +247,14 @@ position = Vector2(566, 532)
 scale = Vector2(0.21, 0.24)
 texture = ExtResource("1_woqjo")
 
+[node name="Moon" type="Node2D" parent="Background"]
+position = Vector2(561, 494)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Moon"]
+texture = SubResource("AtlasTexture_6bvpi")
+
 [node name="MediumBuildings" type="Node2D" parent="Background"]
-position = Vector2(494, 527)
+position = Vector2(495, 506)
 
 [node name="Building" type="Sprite2D" parent="Background/MediumBuildings"]
 position = Vector2(37, 31)
@@ -297,19 +264,8 @@ texture = SubResource("AtlasTexture_uwg88")
 position = Vector2(119, 31)
 texture = SubResource("AtlasTexture_uwg88")
 
-[node name="Moon" type="Node2D" parent="Background"]
-position = Vector2(521, 502)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Moon"]
-texture = SubResource("AtlasTexture_6bvpi")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Moon"]
-libraries = {
-"": SubResource("AnimationLibrary_t6yo1")
-}
-
 [node name="LargeBuildings" type="Node2D" parent="Background"]
-position = Vector2(494, 532)
+position = Vector2(494, 516)
 
 [node name="LargeBuilding" type="Sprite2D" parent="Background/LargeBuildings"]
 position = Vector2(-1, 5)

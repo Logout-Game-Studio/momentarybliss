@@ -15,9 +15,8 @@ size = Vector2(36, 16)
 texture_repeat = 2
 position = Vector2(635, 371)
 script = ExtResource("1_iu81p")
-max_bounces = 3
-max_move_speed = 3.0
-min_move_speed = 1.0
+max_move_speed = 1.5
+min_move_speed = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
