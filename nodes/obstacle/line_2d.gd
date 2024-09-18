@@ -1,7 +1,11 @@
 extends Line2D
 
+@export var sprite2D:Sprite2D
 @export var length = 50
 var point = Vector2()
+
+func _ready() -> void:
+	default_color = sprite2D.modulate
 
 func _process(delta: float) -> void:
 	global_position = Vector2(0,0)
