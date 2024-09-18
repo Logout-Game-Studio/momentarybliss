@@ -1,9 +1,17 @@
 class_name PlayerController extends CharacterBody2D
 
+@export var animation_player:AnimationPlayer
 @export var move_speed = 10
+
 
 func _ready() -> void:
 	GameManager.start_score_count_loop()
+	
+func _process(delta: float) -> void:
+	if velocity.x != 0:
+		animation_player.play("walk")
+	else:
+		animation_player.play("idle")
 
 func _physics_process(delta: float) -> void:
 	var fall = velocity.y + (delta * ProjectSettings.get_setting("physics/2d/default_gravity")) if not is_on_floor() else 0

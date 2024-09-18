@@ -1,25 +1,25 @@
 [gd_scene load_steps=6 format=3 uid="uid://cui0rmqfius3b"]
 
-[ext_resource type="Texture2D" uid="uid://dmocuy1t2q4ku" path="res://assets/images/Items/Boxes/Box1/Hit (28x24).png" id="1_c6ulc"]
 [ext_resource type="Script" path="res://nodes/obstacle/moving_obstacle.gd" id="1_iu81p"]
+[ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="2_j85dd"]
 [ext_resource type="Script" path="res://nodes/obstacle/rain.gd" id="3_wxe27"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exrq0"]
-atlas = ExtResource("1_c6ulc")
-region = Rect2(30.1417, 2.87454, 24.137, 18.2017)
+atlas = ExtResource("2_j85dd")
+region = Rect2(72.1219, 14.5938, 35.6287, 17.3799)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6f6o"]
-size = Vector2(72, 16)
+size = Vector2(36, 16)
 
 [node name="RainingClouds" type="CharacterBody2D"]
 texture_repeat = 2
 position = Vector2(635, 371)
 script = ExtResource("1_iu81p")
-max_bounces = 3
+max_move_speed = 1.5
+min_move_speed = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
-scale = Vector2(3, 1)
 texture = SubResource("AtlasTexture_exrq0")
 
 [node name="CornerDetectionArea" type="Area2D" parent="."]

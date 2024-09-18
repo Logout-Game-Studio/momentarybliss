@@ -1,12 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://5ikrd8yk2fgb"]
+[gd_scene load_steps=8 format=3 uid="uid://5ikrd8yk2fgb"]
 
 [ext_resource type="Script" path="res://nodes/obstacle/raindrop.gd" id="1_2qxpq"]
-[ext_resource type="Texture2D" uid="uid://dbr5i4kqeu4oi" path="res://icon.svg" id="1_nospj"]
+[ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="2_whgf6"]
+[ext_resource type="Script" path="res://nodes/obstacle/line_2d.gd" id="3_p0x1w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce1pr"]
-size = Vector2(14, 14)
+size = Vector2(1, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dcaf3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nadqo"]
+atlas = ExtResource("2_whgf6")
+region = Rect2(22.47, 41.862, 2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5x7h"]
+size = Vector2(1.25, 1.25)
+
+[sub_resource type="Curve" id="Curve_xmopa"]
+_data = [Vector2(0, 0.2), 0.0, 0.0, 0, 0]
+point_count = 1
+metadata/_snap_enabled = true
 
 [node name="Raindrop" type="RigidBody2D"]
 collision_layer = 2
@@ -17,15 +28,21 @@ damage = 5
 shape = SubResource("RectangleShape2D_ce1pr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_nospj")
+modulate = Color(0.83, 0.3569, 0.822115, 1)
+texture = SubResource("AtlasTexture_nadqo")
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("CircleShape2D_dcaf3")
+shape = SubResource("RectangleShape2D_g5x7h")
+
+[node name="Line2D" type="Line2D" parent="."]
+width_curve = SubResource("Curve_xmopa")
+default_color = Color(0.662745, 0.286275, 0.658824, 1)
+script = ExtResource("3_p0x1w")
+length = 5
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
