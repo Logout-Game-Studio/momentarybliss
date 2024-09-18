@@ -254,6 +254,7 @@ position = Vector2(561, 494)
 texture = SubResource("AtlasTexture_6bvpi")
 
 [node name="MediumBuildings" type="Node2D" parent="Background"]
+modulate = Color(0.63, 0.63, 0.63, 1)
 position = Vector2(495, 506)
 
 [node name="Building" type="Sprite2D" parent="Background/MediumBuildings"]
