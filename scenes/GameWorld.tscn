@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://0kpyv3ucfff8"]
+[gd_scene load_steps=17 format=4 uid="uid://0kpyv3ucfff8"]
 
 [ext_resource type="PackedScene" uid="uid://yne17mrgp6nf" path="res://nodes/player/player.tscn" id="1_3lbp6"]
 [ext_resource type="Texture2D" uid="uid://ddabwau86svld" path="res://assets/images/Terrain/sky.png" id="1_woqjo"]
 [ext_resource type="Texture2D" uid="uid://lgrmw52xywe0" path="res://assets/images/Terrain/Terrain (16x16).png" id="2_nk7vm"]
 [ext_resource type="Texture2D" uid="uid://c15o4r743svn3" path="res://assets/images/Terrain/city_tile_map.png" id="3_u6ldo"]
+[ext_resource type="Script" path="res://nodes/camera_2d.gd" id="5_lytuv"]
 [ext_resource type="Script" path="res://nodes/ui/score_display.gd" id="5_oub0a"]
 [ext_resource type="Script" path="res://nodes/obstacle/cloud_spawner.gd" id="6_pu6to"]
 [ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="6_yyknn"]
@@ -235,6 +236,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_8x8jr")
 sources/1 = SubResource("TileSetAtlasSource_p3tkl")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oyj2p"]
+noise_type = 0
+frequency = 1.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_ic2o5"]
 font_size = 25
 
@@ -281,8 +286,14 @@ tile_map_data = PackedByteArray("AAAcACQAAQACAAEAAAAdACQAAQACAAEAAAAeACQAAQACAAE
 tile_set = SubResource("TileSet_okpeo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(566, 529)
 zoom = Vector2(6, 6)
+
+[node name="ScreenShakeEffect" type="Node" parent="Camera2D" node_paths=PackedStringArray("camera_2d")]
+script = ExtResource("5_lytuv")
+camera_2d = NodePath("..")
+noise = SubResource("FastNoiseLite_oyj2p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -303,6 +314,11 @@ position = Vector2(566, 499)
 script = ExtResource("6_pu6to")
 spawn_delay = 1
 
-[node name="Player" parent="." instance=ExtResource("1_3lbp6")]
+[node name="Player" parent="." node_paths=PackedStringArray("screen_shake_effect") instance=ExtResource("1_3lbp6")]
 position = Vector2(623, 519)
+screen_shake_effect = NodePath("../Camera2D/ScreenShakeEffect")
 move_speed = 50
+
+[connection signal="damaged" from="Player/HealthComponent" to="Player" method="_on_health_component_damaged"]
+
+[editable path="Player"]

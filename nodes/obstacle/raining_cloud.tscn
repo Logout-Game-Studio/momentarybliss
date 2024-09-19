@@ -7,7 +7,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exrq0"]
 atlas = ExtResource("2_j85dd")
-region = Rect2(72.1219, 14.5938, 35.6287, 17.3799)
+region = Rect2(68.9434, 14.5938, 41.5619, 17.3799)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6f6o"]
 size = Vector2(36, 16)
@@ -16,8 +16,8 @@ size = Vector2(36, 16)
 texture_repeat = 2
 position = Vector2(635, 371)
 script = ExtResource("1_iu81p")
-max_move_speed = 1.5
-min_move_speed = 0.5
+max_move_speed = 70.0
+min_move_speed = 50.0
 particle_on_despawn = ExtResource("4_qtbu6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
