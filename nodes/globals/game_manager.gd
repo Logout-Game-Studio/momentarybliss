@@ -3,7 +3,6 @@ extends Node
 var main_game_scene = preload("res://scenes/GameWorld.tscn")
 var main_menu_scene = preload("res://scenes/MainMenu.tscn")
 var game_over_scene = preload("res://scenes/GameOverWorld.tscn")
-var current_scene:Node = null
 var game_over_delay: float = 2
 
 var player_score: int = 0
@@ -24,6 +23,9 @@ func get_score():
 
 func game_over():
 	await get_tree().create_timer(game_over_delay).timeout
+	var animation_player:AnimationPlayer = get_tree().current_scene.get_node("AnimationPlayer")
+	animation_player.play("death_animation")
+	await animation_player.animation_finished
 	_load_scene(game_over_scene)
 
 func load_main_game_scene():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://yne17mrgp6nf"]
+[gd_scene load_steps=17 format=3 uid="uid://yne17mrgp6nf"]
 
 [ext_resource type="Script" path="res://nodes/player/player.gd" id="1_y7ruw"]
 [ext_resource type="Texture2D" uid="uid://b73byx7hgdmem" path="res://assets/images/Main Characters/main_character.png" id="2_htkyg"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://nodes/player/player_sprite.gd" id="3_3r1ly"]
 [ext_resource type="PackedScene" uid="uid://cn1m8g3vxvyh1" path="res://nodes/components/health_component.tscn" id="4_xlfgi"]
 [ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="5_pcbt1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ylf1v"]
+blend_mode = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdp76"]
 atlas = ExtResource("5_pcbt1")
@@ -123,6 +126,7 @@ animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("fill_sprite", "health_component")]
 clip_children = 2
+material = SubResource("CanvasItemMaterial_ylf1v")
 texture = ExtResource("2_htkyg")
 script = ExtResource("3_3r1ly")
 fill_sprite = NodePath("FillSprite")
