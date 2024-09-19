@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7hi23p30opcp"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7whbm"]
+particle_flag_disable_z = true
+
+[node name="DuskParticles" type="GPUParticles2D"]
+position = Vector2(0, 8)
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_7whbm")

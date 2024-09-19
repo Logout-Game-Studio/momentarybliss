@@ -2,7 +2,8 @@ class_name PlayerController extends CharacterBody2D
 
 
 @export var screen_shake_effect:ScreenShakeEffect
-@export var gpu_particle:GPUParticles2D
+@export var health_component:HealthComponent
+@export var dust_particle:GPUParticles2D
 @export var animation_player:AnimationPlayer
 @export var move_speed = 10
 
@@ -12,10 +13,10 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if velocity.x != 0:
-		gpu_particle.emitting = true
+		dust_particle.emitting = true
 		animation_player.play("walk")
 	else:
-		gpu_particle.emitting = false
+		dust_particle.emitting = false
 		animation_player.play("idle")
 
 func _physics_process(delta: float) -> void:

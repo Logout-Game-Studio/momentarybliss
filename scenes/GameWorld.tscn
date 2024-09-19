@@ -319,6 +319,4 @@ position = Vector2(623, 519)
 screen_shake_effect = NodePath("../Camera2D/ScreenShakeEffect")
 move_speed = 50
 
-[connection signal="damaged" from="Player/HealthComponent" to="Player" method="_on_health_component_damaged"]
-
 [editable path="Player"]
