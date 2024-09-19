@@ -34,7 +34,9 @@ folder_colors={
 "res://assets/": "yellow",
 "res://nodes/components/": "green",
 "res://nodes/globals/": "blue",
-"res://nodes/obstacle/": "red"
+"res://nodes/obstacle/": "red",
+"res://nodes/particles/": "pink",
+"res://nodes/ui/": "gray"
 }
 
 [input]
