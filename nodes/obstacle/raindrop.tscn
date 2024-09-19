@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://5ikrd8yk2fgb"]
+[gd_scene load_steps=9 format=3 uid="uid://5ikrd8yk2fgb"]
 
 [ext_resource type="Script" path="res://nodes/obstacle/raindrop.gd" id="1_2qxpq"]
+[ext_resource type="PackedScene" uid="uid://chl8m8k4tcx2f" path="res://nodes/particles/rain_drop_collision_particle.tscn" id="2_ta6aa"]
 [ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="2_whgf6"]
 [ext_resource type="Script" path="res://nodes/obstacle/line_2d.gd" id="3_p0x1w"]
 
@@ -23,6 +24,7 @@ metadata/_snap_enabled = true
 collision_layer = 2
 script = ExtResource("1_2qxpq")
 damage = 5
+particle = ExtResource("2_ta6aa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ce1pr")
