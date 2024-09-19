@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://de8a645vwklxg"]
+
+[ext_resource type="Script" path="res://nodes/scenario/camera_2d.gd" id="1_fyakp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oyj2p"]
+noise_type = 0
+frequency = 1.0
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(566, 529)
+zoom = Vector2(6, 6)
+
+[node name="ScreenShakeEffect" type="Node" parent="." node_paths=PackedStringArray("camera_2d")]
+script = ExtResource("1_fyakp")
+camera_2d = NodePath("..")
+noise = SubResource("FastNoiseLite_oyj2p")

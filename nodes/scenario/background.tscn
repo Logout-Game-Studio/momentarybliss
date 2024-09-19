@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqppb7cl18f80"]
+
+[ext_resource type="Texture2D" uid="uid://ddabwau86svld" path="res://assets/images/Terrain/sky.png" id="1_peoeo"]
+[ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="2_t8krj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bvpi"]
+atlas = ExtResource("2_t8krj")
+region = Rect2(-0.503983, 5.44941, 47.5838, 42.9187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwg88"]
+atlas = ExtResource("2_t8krj")
+region = Rect2(54.9393, 79.6143, 49.7351, 80.3857)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m71rh"]
+atlas = ExtResource("2_t8krj")
+region = Rect2(0, 47.7216, 50.0066, 112.278)
+
+[node name="Background" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(566, 532)
+scale = Vector2(0.21, 0.24)
+texture = ExtResource("1_peoeo")
+
+[node name="Moon" type="Node2D" parent="."]
+position = Vector2(561, 494)
+
+[node name="Sprite2D" type="Sprite2D" parent="Moon"]
+texture = SubResource("AtlasTexture_6bvpi")
+
+[node name="MediumBuildings" type="Node2D" parent="."]
+modulate = Color(0.63, 0.63, 0.63, 1)
+position = Vector2(495, 506)
+
+[node name="Building" type="Sprite2D" parent="MediumBuildings"]
+position = Vector2(37, 31)
+texture = SubResource("AtlasTexture_uwg88")
+
+[node name="Building2" type="Sprite2D" parent="MediumBuildings"]
+position = Vector2(119, 31)
+texture = SubResource("AtlasTexture_uwg88")
+
+[node name="LargeBuildings" type="Node2D" parent="."]
+position = Vector2(494, 516)
+
+[node name="LargeBuilding" type="Sprite2D" parent="LargeBuildings"]
+position = Vector2(-1, 5)
+texture = SubResource("AtlasTexture_m71rh")
+
+[node name="LargeBuilding2" type="Sprite2D" parent="LargeBuildings"]
+position = Vector2(148, 5)
+texture = SubResource("AtlasTexture_m71rh")
