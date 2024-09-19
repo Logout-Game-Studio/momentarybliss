@@ -23,7 +23,7 @@ metadata/_snap_enabled = true
 [node name="Raindrop" type="RigidBody2D"]
 collision_layer = 2
 script = ExtResource("1_2qxpq")
-damage = 5
+damage = 2
 particle = ExtResource("2_ta6aa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

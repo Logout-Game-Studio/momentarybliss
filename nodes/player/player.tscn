@@ -137,12 +137,10 @@ scale = Vector2(5, 13)
 texture = SubResource("AtlasTexture_pdp76")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_6pjae")
 
 [node name="HitBoxArea" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_0i00c")]
-visible = false
 position = Vector2(0, 4)
 scale = Vector2(1.29782, 1.35085)
 collision_mask = 2
