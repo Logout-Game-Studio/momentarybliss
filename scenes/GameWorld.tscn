@@ -370,6 +370,9 @@ move_speed = 50
 z_index = 1
 material = SubResource("CanvasItemMaterial_5sb6j")
 
+[node name="CollisionShape2D" parent="Player/HitBoxArea" index="0"]
+position = Vector2(0.385254, -1.8507)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 physics_interpolation_mode = 2
 libraries = {

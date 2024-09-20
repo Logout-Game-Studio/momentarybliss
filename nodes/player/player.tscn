@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://yne17mrgp6nf"]
+[gd_scene load_steps=17 format=3 uid="uid://yne17mrgp6nf"]
 
 [ext_resource type="Script" path="res://nodes/player/player.gd" id="1_y7ruw"]
 [ext_resource type="Texture2D" uid="uid://b73byx7hgdmem" path="res://assets/images/Main Characters/main_character.png" id="2_htkyg"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ylf1v"]
 blend_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ov1t4"]
+blend_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdp76"]
 atlas = ExtResource("5_pcbt1")
@@ -127,14 +130,15 @@ material = SubResource("CanvasItemMaterial_ylf1v")
 texture = ExtResource("2_htkyg")
 script = ExtResource("3_3r1ly")
 fill_sprite = NodePath("FillSprite")
-initial_position = Vector2(0.5, 14.5)
-end_position = Vector2(0.5, 1.5)
+initial_position = Vector2(0.5, 15.5)
+end_position = Vector2(0.5, 0.5)
 health_component = NodePath("../HealthComponent")
 
 [node name="FillSprite" type="Sprite2D" parent="Sprite2D"]
 modulate = Color(0.5, 0, 1, 0.729412)
-position = Vector2(0.5, 1.5)
-scale = Vector2(5, 13)
+material = SubResource("CanvasItemMaterial_ov1t4")
+position = Vector2(0.5, 0.5)
+scale = Vector2(7, 15)
 texture = SubResource("AtlasTexture_pdp76")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
