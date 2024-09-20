@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cui0rmqfius3b"]
+
+[ext_resource type="Script" path="res://nodes/obstacle/moving_obstacle.gd" id="1_iu81p"]
+[ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="2_j85dd"]
+[ext_resource type="Script" path="res://nodes/obstacle/rain.gd" id="3_wxe27"]
+[ext_resource type="PackedScene" uid="uid://bjbpo7ia1kp7k" path="res://nodes/particles/cloud_despawn_particles.tscn" id="4_qtbu6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exrq0"]
+atlas = ExtResource("2_j85dd")
+region = Rect2(68.9434, 14.5938, 41.5619, 17.3799)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6f6o"]
+size = Vector2(36, 16)
+
+[node name="RainingClouds" type="CharacterBody2D"]
+texture_repeat = 2
+position = Vector2(635, 371)
+script = ExtResource("1_iu81p")
+max_move_speed = 70.0
+min_move_speed = 50.0
+particle_on_despawn = ExtResource("4_qtbu6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.852667, 0.48, 1, 1)
+texture = SubResource("AtlasTexture_exrq0")
+
+[node name="CornerDetectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CornerDetectionArea"]
+shape = SubResource("RectangleShape2D_s6f6o")
+
+[node name="Rain" type="Node2D" parent="."]
+position = Vector2(0, 9)
+script = ExtResource("3_wxe27")
+shotting_delay = 0.5
+
+[node name="CloudDespawnParticles" parent="." instance=ExtResource("4_qtbu6")]
+
+[connection signal="body_entered" from="CornerDetectionArea" to="." method="_on_corner_detection_area_body_entered"]
+[connection signal="tree_exiting" from="Rain" to="Rain" method="_on_tree_exiting"]
