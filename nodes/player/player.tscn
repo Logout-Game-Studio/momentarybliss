@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cn1m8g3vxvyh1" path="res://nodes/components/health_component.tscn" id="4_xlfgi"]
 [ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="5_pcbt1"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ylf1v"]
+blend_mode = 3
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdp76"]
 atlas = ExtResource("5_pcbt1")
 region = Rect2(25.432, 42.377, 1, 1)
@@ -16,10 +19,7 @@ region = Rect2(25.432, 42.377, 1, 1)
 size = Vector2(5, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5krfu"]
-size = Vector2(3.85258, 7.40273)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tysmo"]
-size = Vector2(2.3116, 2.22083)
+size = Vector2(3.85258, 9.62354)
 
 [sub_resource type="Animation" id="Animation_xharb"]
 length = 0.001
@@ -123,6 +123,7 @@ animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("fill_sprite", "health_component")]
 clip_children = 2
+material = SubResource("CanvasItemMaterial_ylf1v")
 texture = ExtResource("2_htkyg")
 script = ExtResource("3_3r1ly")
 fill_sprite = NodePath("FillSprite")
@@ -147,13 +148,8 @@ collision_mask = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxArea"]
-position = Vector2(0.385254, -0.740295)
+position = Vector2(0.385254, -1.8507)
 shape = SubResource("RectangleShape2D_5krfu")
-debug_color = Color(0.599797, 0.360563, 1.92523e-07, 0.42)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBoxArea"]
-position = Vector2(0.385254, -5.55206)
-shape = SubResource("RectangleShape2D_tysmo")
 debug_color = Color(0.599797, 0.360563, 1.92523e-07, 0.42)
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_xlfgi")]

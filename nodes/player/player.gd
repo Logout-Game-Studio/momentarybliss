@@ -6,10 +6,11 @@ class_name PlayerController extends CharacterBody2D
 @export var dust_particle:GPUParticles2D
 @export var animation_player:AnimationPlayer
 @export var move_speed = 10
-
+@export var jump_force = 250
 
 func _ready() -> void:
 	GameManager.start_score_count_loop()
+
 	
 func _process(delta: float) -> void:
 	if velocity.x != 0:
@@ -18,6 +19,9 @@ func _process(delta: float) -> void:
 	else:
 		dust_particle.emitting = false
 		animation_player.play("idle")
+	
+	if Input.is_action_just_pressed("ui_down"):
+		die()
 
 func _physics_process(delta: float) -> void:
 	var fall = velocity.y + (delta * ProjectSettings.get_setting("physics/2d/default_gravity")) if not is_on_floor() else 0
@@ -36,8 +40,7 @@ func _get_movement():
 func die():
 	GameManager.stop_score_count_loop()
 	GameManager.game_over()
-	queue_free()
-
+	
 func _on_health_component_died() -> void:
 	die() # Replace with function body.
 

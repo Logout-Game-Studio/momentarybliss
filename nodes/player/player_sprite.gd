@@ -13,4 +13,5 @@ func _on_health_component_damaged(value: int) -> void:
 
 func _update_sprite_fill():
 	var factor = 1 - (float(health_component.current_health) / float(health_component.max_health))
+	factor = clampf(factor,0,1)
 	fill_sprite.position.y = lerpf(initial_position.y,end_position.y,factor)

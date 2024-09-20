@@ -1,25 +1,12 @@
-[gd_scene load_steps=17 format=4 uid="uid://0kpyv3ucfff8"]
+[gd_scene load_steps=16 format=4 uid="uid://0kpyv3ucfff8"]
 
 [ext_resource type="PackedScene" uid="uid://yne17mrgp6nf" path="res://nodes/player/player.tscn" id="1_3lbp6"]
-[ext_resource type="Texture2D" uid="uid://ddabwau86svld" path="res://assets/images/Terrain/sky.png" id="1_woqjo"]
+[ext_resource type="PackedScene" uid="uid://cqppb7cl18f80" path="res://nodes/scenario/background.tscn" id="1_7y3uo"]
 [ext_resource type="Texture2D" uid="uid://lgrmw52xywe0" path="res://assets/images/Terrain/Terrain (16x16).png" id="2_nk7vm"]
 [ext_resource type="Texture2D" uid="uid://c15o4r743svn3" path="res://assets/images/Terrain/city_tile_map.png" id="3_u6ldo"]
-[ext_resource type="Script" path="res://nodes/camera_2d.gd" id="5_lytuv"]
+[ext_resource type="PackedScene" uid="uid://de8a645vwklxg" path="res://nodes/scenario/camera_2d.tscn" id="4_ra45x"]
 [ext_resource type="Script" path="res://nodes/ui/score_display.gd" id="5_oub0a"]
 [ext_resource type="Script" path="res://nodes/obstacle/cloud_spawner.gd" id="6_pu6to"]
-[ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="6_yyknn"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6bvpi"]
-atlas = ExtResource("6_yyknn")
-region = Rect2(-0.503983, 5.44941, 47.5838, 42.9187)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uwg88"]
-atlas = ExtResource("6_yyknn")
-region = Rect2(54.9393, 79.6143, 49.7351, 80.3857)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m71rh"]
-atlas = ExtResource("6_yyknn")
-region = Rect2(0, 47.7216, 50.0066, 112.278)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8x8jr"]
 texture = ExtResource("2_nk7vm")
@@ -236,64 +223,124 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_8x8jr")
 sources/1 = SubResource("TileSetAtlasSource_p3tkl")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oyj2p"]
-noise_type = 0
-frequency = 1.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_ic2o5"]
 font_size = 25
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5sb6j"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_7s2rh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasModulate:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TileMapLayer:collision_enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_s5f27"]
+resource_name = "death_animation"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudSpawner")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TileMapLayer:collision_enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7o8mk"]
+_data = {
+"RESET": SubResource("Animation_7s2rh"),
+"death_animation": SubResource("Animation_s5f27")
+}
+
 [node name="GameWorld" type="Node2D"]
 
-[node name="Background" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(566, 532)
-scale = Vector2(0.21, 0.24)
-texture = ExtResource("1_woqjo")
-
-[node name="Moon" type="Node2D" parent="Background"]
-position = Vector2(561, 494)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Moon"]
-texture = SubResource("AtlasTexture_6bvpi")
-
-[node name="MediumBuildings" type="Node2D" parent="Background"]
-modulate = Color(0.63, 0.63, 0.63, 1)
-position = Vector2(495, 506)
-
-[node name="Building" type="Sprite2D" parent="Background/MediumBuildings"]
-position = Vector2(37, 31)
-texture = SubResource("AtlasTexture_uwg88")
-
-[node name="Building2" type="Sprite2D" parent="Background/MediumBuildings"]
-position = Vector2(119, 31)
-texture = SubResource("AtlasTexture_uwg88")
-
-[node name="LargeBuildings" type="Node2D" parent="Background"]
-position = Vector2(494, 516)
-
-[node name="LargeBuilding" type="Sprite2D" parent="Background/LargeBuildings"]
-position = Vector2(-1, 5)
-texture = SubResource("AtlasTexture_m71rh")
-
-[node name="LargeBuilding2" type="Sprite2D" parent="Background/LargeBuildings"]
-position = Vector2(148, 5)
-texture = SubResource("AtlasTexture_m71rh")
+[node name="Scenario" parent="." instance=ExtResource("1_7y3uo")]
+physics_interpolation_mode = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(0.156863, 0.152941, 0.247059, 1)
 tile_map_data = PackedByteArray("AAAcACQAAQACAAEAAAAdACQAAQACAAEAAAAeACQAAQACAAEAAAAfACQAAQACAAEAAAAgACQAAQACAAEAAAAhACQAAQACAAEAAAAiACQAAQACAAEAAAAjACQAAQACAAEAAAAkACQAAQACAAEAAAAlACQAAQACAAEAAAAmACQAAQACAAEAAAAnACQAAQACAAEAAAAoACQAAQACAAEAAAApACQAAQACAAEAAAAqACQAAQACAAEAAAAcACUAAQACAAIAAAAcACYAAQACAAIAAAAdACUAAQACAAIAAAAdACYAAQACAAIAAAAeACUAAQACAAIAAAAeACYAAQACAAIAAAAfACUAAQACAAIAAAAfACYAAQACAAIAAAAgACUAAQACAAIAAAAgACYAAQACAAIAAAAhACUAAQACAAIAAAAhACYAAQACAAIAAAAiACUAAQACAAIAAAAiACYAAQACAAIAAAAjACUAAQACAAIAAAAjACYAAQACAAIAAAAkACUAAQACAAIAAAAkACYAAQACAAIAAAAlACUAAQACAAIAAAAlACYAAQACAAIAAAAmACUAAQACAAIAAAAmACYAAQACAAIAAAAnACUAAQACAAIAAAAnACYAAQACAAIAAAAoACUAAQACAAIAAAAoACYAAQACAAIAAAApACUAAQACAAIAAAApACYAAQACAAIAAAAqACUAAQACAAIAAAAqACYAAQACAAIAAAAcACcAAQACAAIAAAAdACcAAQACAAIAAAAeACcAAQACAAIAAAAfACcAAQACAAIAAAAgACcAAQACAAIAAAAhACcAAQACAAIAAAAiACcAAQACAAIAAAAjACcAAQACAAIAAAAkACcAAQACAAIAAAAlACcAAQACAAIAAAAmACcAAQACAAIAAAAnACcAAQACAAIAAAAoACcAAQACAAIAAAApACcAAQACAAIAAAAqACcAAQACAAIAAAAcACgAAQACAAMAAAAdACgAAQACAAMAAAAeACgAAQACAAMAAAAfACgAAQACAAMAAAAgACgAAQACAAMAAAAhACgAAQACAAMAAAAiACgAAQACAAMAAAAjACgAAQACAAMAAAAkACgAAQACAAMAAAAlACgAAQACAAMAAAAmACgAAQACAAMAAAAnACgAAQACAAMAAAAoACgAAQACAAMAAAApACgAAQACAAMAAAAqACgAAQACAAMAAAAcAB4AAQADAAEAAAAcAB8AAQADAAIAAAAcACAAAQADAAMAAAAcACEAAQADAAEAAAAcACIAAQADAAIAAAAcACMAAQADAAMAAAAqAB4AAQADAAEAAAAqAB8AAQADAAIAAAAqACAAAQADAAMAAAAqACEAAQADAAEAAAAqACIAAQADAAIAAAAqACMAAQADAAMAAAA=")
 tile_set = SubResource("TileSet_okpeo")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" parent="." instance=ExtResource("4_ra45x")]
 unique_name_in_owner = true
-position = Vector2(566, 529)
-zoom = Vector2(6, 6)
-
-[node name="ScreenShakeEffect" type="Node" parent="Camera2D" node_paths=PackedStringArray("camera_2d")]
-script = ExtResource("5_lytuv")
-camera_2d = NodePath("..")
-noise = SubResource("FastNoiseLite_oyj2p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -315,8 +362,21 @@ script = ExtResource("6_pu6to")
 spawn_delay = 1
 
 [node name="Player" parent="." node_paths=PackedStringArray("screen_shake_effect") instance=ExtResource("1_3lbp6")]
-position = Vector2(623, 519)
+position = Vector2(566, 528)
 screen_shake_effect = NodePath("../Camera2D/ScreenShakeEffect")
 move_speed = 50
 
+[node name="Sprite2D" parent="Player" index="1"]
+z_index = 1
+material = SubResource("CanvasItemMaterial_5sb6j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+physics_interpolation_mode = 2
+libraries = {
+"": SubResource("AnimationLibrary_7o8mk")
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[editable path="Camera2D"]
 [editable path="Player"]
