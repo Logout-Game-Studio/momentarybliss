@@ -5,6 +5,8 @@ class_name PlayerController extends CharacterBody2D
 @export var health_component:HealthComponent
 @export var dust_particle:GPUParticles2D
 @export var animation_player:AnimationPlayer
+@export var audio_player_walking:AudioStreamPlayer2D
+@export var audio_player_damage:AudioStreamPlayer2D
 @export var move_speed = 10
 @export var jump_force = 250
 
@@ -16,6 +18,8 @@ func _process(delta: float) -> void:
 	if velocity.x != 0:
 		dust_particle.emitting = true
 		animation_player.play("walk")
+		if !audio_player_walking.playing:
+			audio_player_walking.playing = true
 	else:
 		dust_particle.emitting = false
 		animation_player.play("idle")
@@ -45,5 +49,6 @@ func _on_health_component_died() -> void:
 	die() # Replace with function body.
 
 func _on_health_component_damaged(value: int) -> void:
+	audio_player_damage.playing = true
 	if screen_shake_effect:
 		screen_shake_effect.add_trauma(1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://yne17mrgp6nf"]
+[gd_scene load_steps=21 format=3 uid="uid://yne17mrgp6nf"]
 
 [ext_resource type="Script" path="res://nodes/player/player.gd" id="1_y7ruw"]
 [ext_resource type="Texture2D" uid="uid://b73byx7hgdmem" path="res://assets/images/Main Characters/main_character.png" id="2_htkyg"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://nodes/player/player_sprite.gd" id="3_3r1ly"]
 [ext_resource type="PackedScene" uid="uid://cn1m8g3vxvyh1" path="res://nodes/components/health_component.tscn" id="4_xlfgi"]
 [ext_resource type="Texture2D" uid="uid://de64iyxxrsrwg" path="res://assets/images/Terrain/buildings.png" id="5_pcbt1"]
+[ext_resource type="AudioStream" uid="uid://bn4s7p1xnkpxr" path="res://assets/sound/soundeffect Player Steps 1-1-1.mp3" id="8_d1vtg"]
+[ext_resource type="AudioStream" uid="uid://dvctmlbg7xy2d" path="res://assets/sound/soundeffect Player Steps 1.mp3" id="9_b5ukm"]
+[ext_resource type="AudioStream" uid="uid://7kcvw50axign" path="res://assets/sound/soundeffect Player Damage.mp3" id="10_p3ngq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ylf1v"]
 blend_mode = 3
@@ -116,11 +119,19 @@ _data = {
 "walk": SubResource("Animation_qps35")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "dust_particle", "animation_player")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4hcc4"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("8_d1vtg")
+stream_1/stream = ExtResource("9_b5ukm")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "dust_particle", "animation_player", "audio_player_walking", "audio_player_damage")]
 script = ExtResource("1_y7ruw")
 health_component = NodePath("HealthComponent")
 dust_particle = NodePath("DuskParticles")
 animation_player = NodePath("AnimationPlayer")
+audio_player_walking = NodePath("AudioStream_Player_Walk")
+audio_player_damage = NodePath("AudioStream_Player_Damage")
 
 [node name="DuskParticles" parent="." instance=ExtResource("2_pudwq")]
 
@@ -162,6 +173,14 @@ debug_color = Color(0.599797, 0.360563, 1.92523e-07, 0.42)
 libraries = {
 "": SubResource("AnimationLibrary_bsbt2")
 }
+
+[node name="AudioStream_Player_Walk" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4hcc4")
+volume_db = -5.0
+
+[node name="AudioStream_Player_Damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_p3ngq")
+volume_db = -5.0
 
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
 [connection signal="damaged" from="HealthComponent" to="Sprite2D" method="_on_health_component_damaged"]

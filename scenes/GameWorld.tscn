@@ -340,6 +340,9 @@ tile_set = SubResource("TileSet_okpeo")
 [node name="Camera2D" parent="." instance=ExtResource("4_ra45x")]
 unique_name_in_owner = true
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+current = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
