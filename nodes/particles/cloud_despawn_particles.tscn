@@ -26,6 +26,7 @@ atlas = ExtResource("1_eqax1")
 region = Rect2(72.8139, 35.9227, 14.1244, 11.1752)
 
 [node name="CloudDespawnParticles" type="GPUParticles2D"]
+self_modulate = Color(0.852667, 0.48, 1, 1)
 emitting = false
 amount = 3
 process_material = SubResource("ParticleProcessMaterial_oaayr")

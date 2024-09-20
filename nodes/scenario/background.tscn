@@ -26,6 +26,7 @@ texture = ExtResource("1_peoeo")
 position = Vector2(561, 494)
 
 [node name="Sprite2D" type="Sprite2D" parent="Moon"]
+modulate = Color(0.956863, 0.988235, 0.490196, 1)
 texture = SubResource("AtlasTexture_6bvpi")
 
 [node name="MediumBuildings" type="Node2D" parent="."]
